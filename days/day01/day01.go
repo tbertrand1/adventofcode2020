@@ -6,8 +6,10 @@ import (
 	utils "../../utils"
 )
 
+const filename = "day01.txt"
+
 func main() {
-	values := utils.ReadLinesAsIntsOfFile("day01.txt")
+	values := utils.ReadLinesAsIntsOfFile(filename)
 	fmt.Printf("Part 1: %d\n", part1(values))
 	fmt.Printf("Part 2: %d\n", part2(values))
 }

@@ -8,10 +8,11 @@ import (
 	utils "../../utils"
 )
 
+const filename = "day02.txt"
 const inputRegex = "(\\d+)-(\\d+) ([a-z]): ([a-z]+)"
 
 func main() {
-	inputs := utils.ReadLinesOfFile("day02.txt")
+	inputs := utils.ReadLinesOfFile(filename)
 	fmt.Printf("Part 1: %d\n", part1(inputs))
 	fmt.Printf("Part 2: %d\n", part2(inputs))
 }

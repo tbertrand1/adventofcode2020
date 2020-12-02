@@ -4,7 +4,15 @@ import (
 	"bufio"
 	"os"
 	"strconv"
+	"testing"
 )
+
+// AssertEquals verify that a test is in error
+func AssertEquals(t *testing.T, context string, expected int, actual int) {
+	if expected != actual {
+		t.Errorf("%s test fail; expected %d; actual %d", context, expected, actual)
+	}
+}
 
 // ReadLinesOfFile reads a file and returns all the lines
 func ReadLinesOfFile(filename string) []string {

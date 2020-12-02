@@ -15,35 +15,19 @@ func testInputs() []string {
 }
 
 func TestPart1WithTestInputs(t *testing.T) {
-	got := part1(testInputs())
-	expected := 2
-	if got != expected {
-		t.Errorf("Part1() = %d; expected %d", got, expected)
-	}
+	utils.AssertEquals(t, "part1()", 2, part1(testInputs()))
 }
 
 func TestPart1(t *testing.T) {
-	inputs := utils.ReadLinesOfFile("day02.txt")
-	got := part1(inputs)
-	expected := 398
-	if got != expected {
-		t.Errorf("Part1() = %d; expected %d", got, expected)
-	}
+	inputs := utils.ReadLinesOfFile(filename)
+	utils.AssertEquals(t, "part1()", 398, part1(inputs))
 }
 
 func TestPart2WithTestInputs(t *testing.T) {
-	got := part2(testInputs())
-	expected := 1
-	if got != expected {
-		t.Errorf("Part2() = %d; expected %d", got, expected)
-	}
+	utils.AssertEquals(t, "part2()", 1, part2(testInputs()))
 }
 
 func TestPart2(t *testing.T) {
-	inputs := utils.ReadLinesOfFile("day02.txt")
-	got := part2(inputs)
-	expected := 562
-	if got != expected {
-		t.Errorf("Part2() = %d; expected %d", got, expected)
-	}
+	inputs := utils.ReadLinesOfFile(filename)
+	utils.AssertEquals(t, "part2()", 562, part2(inputs))
 }
