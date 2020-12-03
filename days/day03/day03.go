@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sync"
 
 	utils "../../utils"
 )
@@ -12,31 +13,75 @@ const treeChar = '#'
 func main() {
 	values := utils.ReadLinesOfFile(filename)
 	fmt.Printf("Part 1: %d\n", part1(values))
-	fmt.Printf("Part 2: %d\n", part2(values))
+	fmt.Printf("Part 2: %d\n", part2WithGoroutines(values))
 }
 
-func part1(values []string) int {
-	return countTrees(values, 3, 1)
+func part1(inputs []string) int {
+	slope := Slope{right: 3, down: 1}
+	return slope.countTrees(inputs)
 }
 
-func part2(input []string) int {
-	return countTrees(input, 1, 1) *
-		countTrees(input, 3, 1) *
-		countTrees(input, 5, 1) *
-		countTrees(input, 7, 1) *
-		countTrees(input, 1, 2)
+func part2(inputs []string) int {
+	slopes := []Slope{
+		Slope{right: 1, down: 1},
+		Slope{right: 3, down: 1},
+		Slope{right: 5, down: 1},
+		Slope{right: 7, down: 1},
+		Slope{right: 1, down: 2},
+	}
+
+	total := 1
+	for _, slope := range slopes {
+		total *= slope.countTrees(inputs)
+	}
+	return total
 }
 
-func countTrees(values []string, rightDelta int, downDelta int) int {
+func part2WithGoroutines(inputs []string) int {
+	slopes := []Slope{
+		Slope{right: 1, down: 1},
+		Slope{right: 3, down: 1},
+		Slope{right: 5, down: 1},
+		Slope{right: 7, down: 1},
+		Slope{right: 1, down: 2},
+	}
+
+	results := make(chan int, len(slopes))
+	wg := new(sync.WaitGroup)
+	for _, slope := range slopes {
+		wg.Add(1)
+		go slope.countTreesAsync(inputs, wg, results)
+	}
+
+	wg.Wait()
+	close(results)
+
+	total := 1
+	for result := range results {
+		total *= result
+	}
+	return total
+}
+
+type Slope struct {
+	right, down int
+}
+
+func (slope Slope) countTrees(inputs []string) int {
 	nbTrees := 0
-	lineSize := len(values[0])
+	lineSize := len(inputs[0])
 	top, left := 0, 0
-	for top < len(values)-1 {
-		top += downDelta
-		left = (left + rightDelta) % lineSize
-		if values[top][left] == treeChar {
+	for top < len(inputs)-1 {
+		top += slope.down
+		left = (left + slope.right) % lineSize
+		if inputs[top][left] == treeChar {
 			nbTrees++
 		}
 	}
 	return nbTrees
+}
+
+func (slope Slope) countTreesAsync(inputs []string, wg *sync.WaitGroup, results chan int) {
+	defer wg.Done()
+	results <- slope.countTrees(inputs)
 }
