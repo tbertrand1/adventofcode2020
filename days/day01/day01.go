@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 
-	utils "../../utils"
+	files "../../utils/files"
 )
 
 const filename = "day01.txt"
 
 func main() {
-	values := utils.ReadLinesAsIntsOfFile(filename)
+	values := files.ReadLinesAsIntsOfFile(filename)
 	fmt.Printf("Part 1: %d\n", part1(values))
 	fmt.Printf("Part 2: %d\n", part2(values))
 }

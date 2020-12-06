@@ -6,13 +6,13 @@ import (
 	"strconv"
 	"strings"
 
-	utils "../../utils"
+	files "../../utils/files"
 )
 
 const filename = "day04.txt"
 
 func main() {
-	inputs := utils.ReadLinesOfFile(filename)
+	inputs := files.ReadLinesOfFile(filename)
 	fmt.Printf("Part 1: %d\n", checkPassports(inputs, 1))
 	fmt.Printf("Part 2: %d\n", checkPassports(inputs, 2))
 }

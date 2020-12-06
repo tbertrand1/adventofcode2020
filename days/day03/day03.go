@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"sync"
 
-	utils "../../utils"
+	files "../../utils/files"
 )
 
 const filename = "day03.txt"
 const treeChar = '#'
 
 func main() {
-	values := utils.ReadLinesOfFile(filename)
+	values := files.ReadLinesOfFile(filename)
 	fmt.Printf("Part 1: %d\n", part1(values))
 	fmt.Printf("Part 2: %d\n", part2WithGoroutines(values))
 }

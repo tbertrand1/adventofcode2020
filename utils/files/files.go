@@ -1,18 +1,10 @@
-package utils
+package files
 
 import (
 	"bufio"
 	"os"
 	"strconv"
-	"testing"
 )
-
-// AssertEquals verify that a test is in error
-func AssertEquals(t *testing.T, context string, expected int, actual int) {
-	if expected != actual {
-		t.Errorf("%s test fail; expected %d; actual %d", context, expected, actual)
-	}
-}
 
 // ReadLinesOfFile reads a file and returns all the lines
 func ReadLinesOfFile(filename string) []string {
@@ -52,14 +44,4 @@ func ReadLinesAsIntsOfFile(filename string) []int {
 
 	file.Close()
 	return lines
-}
-
-// Find returns the index of a int in an array of ints
-func Find(values []int, value int) (int, bool) {
-	for i, val := range values {
-		if val == value {
-			return i, true
-		}
-	}
-	return -1, false
 }
