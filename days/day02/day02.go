@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strconv"
 
-	files "../../utils/files"
+	"../../utils/files"
 )
 
 const filename = "day02.txt"

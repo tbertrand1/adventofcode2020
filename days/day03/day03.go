@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync"
 
-	files "../../utils/files"
+	"../../utils/files"
 )
 
 const filename = "day03.txt"
@@ -23,11 +23,11 @@ func part1(inputs []string) int {
 
 func part2(inputs []string) int {
 	slopes := []Slope{
-		Slope{right: 1, down: 1},
-		Slope{right: 3, down: 1},
-		Slope{right: 5, down: 1},
-		Slope{right: 7, down: 1},
-		Slope{right: 1, down: 2},
+		{right: 1, down: 1},
+		{right: 3, down: 1},
+		{right: 5, down: 1},
+		{right: 7, down: 1},
+		{right: 1, down: 2},
 	}
 
 	total := 1
@@ -39,11 +39,11 @@ func part2(inputs []string) int {
 
 func part2WithGoroutines(inputs []string) int {
 	slopes := []Slope{
-		Slope{right: 1, down: 1},
-		Slope{right: 3, down: 1},
-		Slope{right: 5, down: 1},
-		Slope{right: 7, down: 1},
-		Slope{right: 1, down: 2},
+		{right: 1, down: 1},
+		{right: 3, down: 1},
+		{right: 5, down: 1},
+		{right: 7, down: 1},
+		{right: 1, down: 2},
 	}
 
 	results := make(chan int, len(slopes))

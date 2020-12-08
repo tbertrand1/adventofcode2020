@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"../../utils/files"
+	"../../utils/sets"
 )
 
 const filename = "day08.txt"
@@ -86,7 +87,7 @@ func buildHandheldConsole(inputs []string) handheldConsole {
 func (hc *handheldConsole) execute() (int, executionStatus) {
 	index := 0
 	accumulator := 0
-	indexExecuted := make(map[int]bool)
+	indexExecuted := sets.NewSet()
 
 	for {
 		currentIndex := index
@@ -95,8 +96,7 @@ func (hc *handheldConsole) execute() (int, executionStatus) {
 		}
 
 		instruction := hc.instructions[currentIndex]
-		_, executed := indexExecuted[currentIndex]
-		if executed {
+		if indexExecuted.Contains(currentIndex) {
 			return accumulator, loop
 		}
 
@@ -112,7 +112,7 @@ func (hc *handheldConsole) execute() (int, executionStatus) {
 			panic("Operation not supported")
 		}
 
-		indexExecuted[currentIndex] = true
+		indexExecuted.Add(currentIndex)
 	}
 }
 

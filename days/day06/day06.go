@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 
-	files "../../utils/files"
+	"../../utils/files"
+	"../../utils/sets"
 )
 
 const filename = "day06.txt"
@@ -19,18 +20,18 @@ func part1(inputs []string) int {
 	sum := 0
 
 	lastIndex := len(inputs) - 1
-	runes := make(map[rune]bool)
+	runes := sets.NewSet()
 
 	for index, line := range inputs {
 		if len(line) != 0 {
-			for _, rune := range line {
-				runes[rune] = true
+			for _, r := range line {
+				runes.Add(r)
 			}
 		}
 
 		if len(line) == 0 || index == lastIndex {
-			sum += len(runes)
-			runes = make(map[rune]bool)
+			sum += runes.Length()
+			runes = sets.NewSet()
 		}
 	}
 
@@ -47,8 +48,8 @@ func part2(inputs []string) int {
 	for index, line := range inputs {
 		if len(line) != 0 {
 			personsInGroup++
-			for _, rune := range line {
-				runes[rune]++
+			for _, r := range line {
+				runes[r]++
 			}
 		}
 

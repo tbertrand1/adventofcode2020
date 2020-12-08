@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	files "../../utils/files"
+	"../../utils/files"
 )
 
 const filename = "day04.txt"

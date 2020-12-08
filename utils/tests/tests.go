@@ -4,9 +4,20 @@ import (
 	"testing"
 )
 
-// AssertEquals verify that a test is in error
-func AssertEquals(t *testing.T, context string, expected int, actual int) {
+func AssertTrue(t *testing.T, actual bool) {
+	if !actual {
+		t.Errorf("Test failed; expected to be true")
+	}
+}
+
+func AssertFalse(t *testing.T, actual bool) {
+	if actual {
+		t.Errorf("Test failed; expected to be false")
+	}
+}
+
+func AssertEquals(t *testing.T, expected interface{}, actual interface{}) {
 	if expected != actual {
-		t.Errorf("%s test fail; expected %d; actual %d", context, expected, actual)
+		t.Errorf("Test failed; expected %d; actual %d", expected, actual)
 	}
 }

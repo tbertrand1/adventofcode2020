@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	files "../../utils/files"
+	"../../utils/files"
 )
 
 const filename = "day01.txt"

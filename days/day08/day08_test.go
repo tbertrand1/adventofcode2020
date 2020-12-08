@@ -22,19 +22,19 @@ func testInputs() []string {
 }
 
 func TestPart1WithTestInputs(t *testing.T) {
-	tests.AssertEquals(t, "part1()", 5, part1(testInputs()))
+	tests.AssertEquals(t, 5, part1(testInputs()))
 }
 
 func TestPart1(t *testing.T) {
 	inputs := files.ReadLinesOfFile(filename)
-	tests.AssertEquals(t, "part1()", 1766, part1(inputs))
+	tests.AssertEquals(t, 1766, part1(inputs))
 }
 
 func TestPart2WithTestInputs(t *testing.T) {
-	tests.AssertEquals(t, "part2()", 8, part2(testInputs()))
+	tests.AssertEquals(t, 8, part2(testInputs()))
 }
 
 func TestPart2(t *testing.T) {
 	inputs := files.ReadLinesOfFile(filename)
-	tests.AssertEquals(t, "part2()", 1639, part2(inputs))
+	tests.AssertEquals(t, 1639, part2(inputs))
 }

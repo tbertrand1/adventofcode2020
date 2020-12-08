@@ -3,8 +3,8 @@ package main
 import (
 	"testing"
 
-	files "../../utils/files"
-	tests "../../utils/tests"
+	"../../utils/files"
+	"../../utils/tests"
 )
 
 func testInputs() []string {
@@ -61,20 +61,20 @@ func testInputsValidsPart2() []string {
 }
 
 func TestPart1WithTestInputs(t *testing.T) {
-	tests.AssertEquals(t, "part1()", 2, checkPassports(testInputs(), 1))
+	tests.AssertEquals(t, 2, checkPassports(testInputs(), 1))
 }
 
 func TestPart1(t *testing.T) {
 	inputs := files.ReadLinesOfFile(filename)
-	tests.AssertEquals(t, "part1()", 182, checkPassports(inputs, 1))
+	tests.AssertEquals(t, 182, checkPassports(inputs, 1))
 }
 
 func TestPart2WithTestInputs(t *testing.T) {
-	tests.AssertEquals(t, "part2()", 0, checkPassports(testInputsInvalidsPart2(), 2))
-	tests.AssertEquals(t, "part2()", 4, checkPassports(testInputsValidsPart2(), 2))
+	tests.AssertEquals(t, 0, checkPassports(testInputsInvalidsPart2(), 2))
+	tests.AssertEquals(t, 4, checkPassports(testInputsValidsPart2(), 2))
 }
 
 func TestPart2(t *testing.T) {
 	inputs := files.ReadLinesOfFile(filename)
-	tests.AssertEquals(t, "part2()", 109, checkPassports(inputs, 2))
+	tests.AssertEquals(t, 109, checkPassports(inputs, 2))
 }
