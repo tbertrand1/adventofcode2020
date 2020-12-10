@@ -9,3 +9,7 @@ func Find(values []int, value int) (int, bool) {
 	}
 	return -1, false
 }
+
+func Last(values []int) int {
+	return values[len(values)-1]
+}
