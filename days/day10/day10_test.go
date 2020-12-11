@@ -77,3 +77,11 @@ func TestPart2(t *testing.T) {
 	inputs := files.ReadLinesAsIntsOfFile(filename)
 	tests.AssertEquals(t, 64793042714624, part2(completeInputs(inputs)))
 }
+
+func BenchmarkPart2(b *testing.B) {
+	inputs := files.ReadLinesAsIntsOfFile(filename)
+	inputs = completeInputs(inputs)
+	for i := 0; i < b.N; i++ {
+		part2(inputs)
+	}
+}
