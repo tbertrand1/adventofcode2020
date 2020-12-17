@@ -30,3 +30,11 @@ func (set *set) Contains(value any) bool {
 func (set *set) Length() int {
 	return len(set.m)
 }
+
+func (set *set) Keys() []any {
+	var keys []any
+	for k := range set.m {
+		keys = append(keys, k)
+	}
+	return keys
+}
