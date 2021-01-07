@@ -15,9 +15,11 @@ func main() {
 
 func part1(inputs []string) int {
 	tiles := ParseTiles(inputs)
-	corners := findCorners(tiles)
+	image := Image{allTiles: tiles}
+	image.assembleImage()
+
 	result := 1
-	for _, corner := range corners {
+	for _, corner := range image.getCorners() {
 		result *= corner.id
 	}
 	return result
@@ -25,39 +27,18 @@ func part1(inputs []string) int {
 
 func part2(inputs []string) int {
 	tiles := ParseTiles(inputs)
-	return len(tiles)
-}
+	image := Image{allTiles: tiles}
+	image.assembleImage()
 
-func findCorners(tiles map[int]*Tile) []*Tile {
-	var corners []*Tile
-	for _, tile := range tiles {
-		bordersUniques := 0
-		for _, border := range tile.borders {
-			if findOtherTileWithSameBorder(tile, border, tiles) == nil {
-				bordersUniques++
-			}
-		}
-		if bordersUniques == 2 {
-			corners = append(corners, tile)
-		}
-	}
-	if len(corners) != 4 {
-		panic(fmt.Errorf("invalid number of corners: %d", len(corners)))
-	}
-	return corners
-}
+	//image.printTiles()
+	//image.printImage()
 
-func findOtherTileWithSameBorder(currentTile *Tile, currentBorder TileLine, tiles map[int]*Tile) *Tile {
-	for id, tile := range tiles {
-		if id == currentTile.id {
-			continue
-		}
+	monster := NewMonsterFromData([]string{
+		"                  # ",
+		"#    ##    ##    ###",
+		" #  #  #  #  #  #   ",
+	})
 
-		for _, border := range tile.borders {
-			if border.isEqualTo(currentBorder) || border.reverse().isEqualTo(currentBorder) {
-				return tile
-			}
-		}
-	}
-	return nil
+	nbMonsters := image.countMonster(monster)
+	return image.countRune('#') - nbMonsters*monster.countRune('#')
 }

@@ -8,5 +8,10 @@ import (
 
 func TestPart1(t *testing.T) {
 	inputs := files.ReadLinesOfFile(filename)
-	tests.AssertEquals(t, 111936085519519, part1(inputs))
+	tests.AssertEquals(t, 3517*3593*2797*3167, part1(inputs))
+}
+
+func TestPart2(t *testing.T) {
+	inputs := files.ReadLinesOfFile(filename)
+	tests.AssertEquals(t, 1792, part2(inputs))
 }
